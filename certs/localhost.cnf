@@ -1,0 +1,26 @@
+#
+# localhost.cnf
+#
+
+[ req ]
+prompt = no
+distinguished_name = server_distinguished_name
+req_extensions = v3_req
+encrypt_key = no
+
+[ server_distinguished_name ]
+commonName = localhost
+stateOrProvinceName = OH
+countryName = US
+emailAddress = web@dev.tld
+organizationName = 000_WEB_DEV
+organizationalUnitName = Development
+
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.0 = localhost
+DNS.1 = dev.local
