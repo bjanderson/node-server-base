@@ -9,8 +9,8 @@ import { router } from './routes';
 import { setJsonHeaders } from './routes/util-middleware';
 
 const httpsPort = 3443;
-const pathToKey = path.resolve('certs', 'server_key.pem');
-const pathToCert = path.resolve('certs', 'server_crt.pem');
+const pathToKey = path.resolve('certs', 'server.key');
+const pathToCert = path.resolve('certs', 'server.crt');
 const pathToDHStrong = path.resolve('certs', 'dh-strong.pem');
 const options = {
   key: readFileSync(pathToKey),
