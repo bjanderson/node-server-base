@@ -2,17 +2,17 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import { readFileSync } from 'fs-extra';
 import Helmet from 'helmet';
-import * as https from 'https';
+import { createServer, ServerOptions } from 'https';
 import morgan from 'morgan';
 import path from 'path';
 import { router } from './routes';
-import { setJsonHeaders } from './routes/util-middleware';
+import { setJsonHeaders, unknownEndpoint } from './routes/util-middleware';
 
 const httpsPort = 3443;
 const pathToKey = path.resolve('certs', 'server.key');
 const pathToCert = path.resolve('certs', 'server.crt');
 const pathToDHStrong = path.resolve('certs', 'dh-strong.pem');
-const options = {
+const options: ServerOptions = {
   key: readFileSync(pathToKey),
   cert: readFileSync(pathToCert),
   dhparam: readFileSync(pathToDHStrong),
@@ -26,13 +26,17 @@ server.use(bodyParser.json());
 
 server.use(Helmet());
 
+// server.use(requestLogger);
+
 server.use('/api', setJsonHeaders, router);
+
+server.use(unknownEndpoint);
 
 // const httpPort = 3001;
 // server.listen(httpPort, () => {
 //   console.log(`Server is running at http://localhost:${httpPort}`);
 // });
 
-https.createServer(options, server).listen(httpsPort, () => {
+createServer(options, server).listen(httpsPort, () => {
   console.log(`Server is running at https://localhost:${httpsPort}`);
 });

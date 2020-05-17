@@ -1,10 +1,10 @@
-import express from 'express';
+import express, { Response, Request } from 'express';
 import { testRoutes } from './test-routes';
 
 export const router = express.Router({ mergeParams: true });
 
 router.use('/test', testRoutes.router);
 
-router.get('/', (req, res): void => {
-  res.send('Server Base API\n');
+router.get('/', (request: Request, response: Response): void => {
+  response.send('Server Base API\n');
 });

@@ -13,30 +13,46 @@ export abstract class CrudRoutes<T> {
     this.router.delete('/:id', this.remove.bind(this));
   }
 
-  getAll(req: Request, res: Response): void {
+  getAll(request: Request, response: Response): void {
     const items = this.db.getAll();
-    res.json(items);
+    response.json(items);
   }
 
-  getById(req: Request, res: Response): void {
-    const { id } = req.params;
+  getById(request: Request, response: Response): void {
+    const { id } = request.params;
     const item = this.db.get(id);
-    res.json(item);
+    if (item != null) {
+      response.json(item);
+    } else {
+      response.status(404).end();
+    }
   }
 
-  create(req: Request, res: Response): void {
-    const item = this.db.create(req.body);
-    res.json(item);
+  create(request: Request, response: Response): void {
+    if (request.body == null) {
+      response.status(400).json({ error: 'The request body must be defined' });
+    } else {
+      const item = this.db.create(request.body);
+      response.json(item);
+    }
   }
 
-  update(req: Request, res: Response): void {
-    const item = this.db.update(req.body);
-    res.json(item);
+  update(request: Request, response: Response): void {
+    if (request.body == null) {
+      response.status(400).json({ error: 'The request body must be defined' });
+    } else {
+      const item = this.db.update(request.body);
+      response.json(item);
+    }
   }
 
-  remove(req: Request, res: Response): void {
-    const { id } = req.params;
-    const deleted = this.db.delete(id);
-    res.json({ deleted });
+  remove(request: Request, response: Response): void {
+    const { id } = request.params;
+    if (request.body == null) {
+      response.status(400).json({ error: 'The id must be defined' });
+    } else {
+      const deleted = this.db.delete(id);
+      response.json({ deleted });
+    }
   }
 }
