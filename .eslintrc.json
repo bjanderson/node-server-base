@@ -18,59 +18,36 @@
     "project": "tsconfig.eslint.json",
     "sourceType": "module"
   },
-  "plugins": [
-    "jsdoc",
-    "prettier",
-    "@typescript-eslint",
-    "@typescript-eslint/tslint"
-  ],
+  "plugins": ["jsdoc", "prettier", "@typescript-eslint", "@typescript-eslint/tslint"],
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".json",
-          ".ts"
-        ]
+        "extensions": [".js", ".json", ".ts"]
       },
       "typescript": {}
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts"
-      ]
+      "@typescript-eslint/parser": [".ts"]
     }
   },
   "rules": {
     "arrow-body-style": "warn",
-    "arrow-parens": [
-      "warn",
-      "always"
-    ],
+    "arrow-parens": ["warn", "always"],
     "camelcase": "warn",
     "class-methods-use-this": "off",
     "comma-dangle": "off",
     "complexity": "off",
     "constructor-super": "warn",
-    "curly": [
-      "warn",
-      "multi-line"
-    ],
+    "curly": ["warn", "multi-line"],
     "dot-notation": "warn",
     "eol-last": "off",
-    "eqeqeq": [
-      "warn",
-      "smart"
-    ],
+    "eqeqeq": ["warn", "smart"],
     "guard-for-in": "warn",
     "id-blacklist": "warn",
     "id-match": "warn",
     "linebreak-style": "off",
     "lines-between-class-members": "off",
-    "max-classes-per-file": [
-      "warn",
-      1
-    ],
+    "max-classes-per-file": ["warn", 1],
     "max-len": "off",
     "new-parens": "off",
     "newline-per-chained-call": "off",
@@ -131,10 +108,7 @@
     "no-useless-constructor": "off",
     "no-var": "warn",
     "object-shorthand": "warn",
-    "one-var": [
-      "warn",
-      "never"
-    ],
+    "one-var": ["warn", "never"],
     "prefer-arrow-callback": [
       "warn",
       {
@@ -143,16 +117,10 @@
     ],
     "prefer-const": "warn",
     "prefer-template": "warn",
-    "quote-props": [
-      "warn",
-      "as-needed"
-    ],
+    "quote-props": ["warn", "as-needed"],
     "radix": "warn",
     "space-before-function-paren": "off",
-    "space-in-parens": [
-      "off",
-      "never"
-    ],
+    "space-in-parens": ["off", "never"],
     "spaced-comment": "warn",
     "use-isnan": "warn",
     "valid-typeof": "off",
@@ -181,7 +149,6 @@
     "@typescript-eslint/adjacent-overload-signatures": "warn",
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/ban-types": "warn",
-    "@typescript-eslint/class-name-casing": "warn",
     "@typescript-eslint/consistent-type-assertions": "warn",
     "@typescript-eslint/consistent-type-definitions": "warn",
     "@typescript-eslint/explicit-function-return-type": [
@@ -224,10 +191,7 @@
     "@typescript-eslint/prefer-function-type": "warn",
     "@typescript-eslint/prefer-namespace-keyword": "warn",
     "@typescript-eslint/quotes": "off",
-    "@typescript-eslint/semi": [
-      "warn",
-      "always"
-    ],
+    "@typescript-eslint/semi": ["warn", "always"],
     "@typescript-eslint/triple-slash-reference": "warn",
     "@typescript-eslint/type-annotation-spacing": "off",
     "@typescript-eslint/unified-signatures": "warn",

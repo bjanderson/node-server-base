@@ -1,0 +1,55 @@
+import {sqlite3} from 'sqlite3';
+import { v4 as uuid } from 'uuid';
+import { existsSync, writeFileSync } from 'fs-extra';
+
+interface IHasId {
+  id: string;
+}
+
+export abstract class CrudDb<T> {
+  private db;
+
+  constructor(protected fileName: string, protected key: string) {
+    this.initDB()
+  }
+
+  initDB(): void {
+
+    this.createFile(this.fileName);
+    const adapter = new FileSync(this.fileName);
+    this.db = lowdb(adapter)
+      // @ts-ignore // https://github.com/typicode/lowdb/issues/233
+      .defaults({ [this.key]: [] })
+      .get(this.key);
+  }
+
+  get(id: string): T {
+    return this.db.find({ id }).value();
+  }
+
+  getAll(): T[] {
+    return this.db.value();
+  }
+
+  create(item: T): T {
+    const i = Object.assign(item, { id: uuid() });
+    this.db.push(i).write();
+    return this.get(i.id);
+  }
+
+  update(item: IHasId): T {
+    this.db.find({ id: item.id }).assign(item).write();
+    return this.get(item.id);
+  }
+
+  delete(id: string): string {
+    this.db.remove({ id }).write();
+    return this.get(id) == null ? id : null;
+  }
+
+  createFile(fileName: string): void {
+    if (!existsSync(fileName)) {
+      writeFileSync(fileName, '', { encoding: 'utf-8' });
+    }
+  }
+}

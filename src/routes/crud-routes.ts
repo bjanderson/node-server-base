@@ -1,7 +1,8 @@
 import { Request, Response, Router } from 'express';
 import { CrudDb } from '../db';
+import { IHasPK } from '../models';
 
-export abstract class CrudRoutes<T> {
+export abstract class CrudRoutes<T extends IHasPK> {
   public router: Router;
 
   constructor(private db: CrudDb<T>) {
@@ -32,8 +33,11 @@ export abstract class CrudRoutes<T> {
     if (request.body == null) {
       response.status(400).json({ error: 'The request body must be defined' });
     } else {
-      const item = this.db.create(request.body);
-      response.json(item);
+      this.db.create(request.body).catch((err) => {
+        response.status(500).json(err);
+      }).then((item) => {
+        response.json(item);
+      });
     }
   }
 

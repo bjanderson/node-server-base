@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 export const setJsonHeaders = (request: Request, response: Response, next: NextFunction): void => {
   try {
-    if (['POST', 'PUT', 'PATCH'].includes(request.method)) {
+    if (['PATCH', 'POST', 'PUT'].includes(request.method)) {
       request.headers.Accept = 'application/json';
       request.headers['Content-Type'] = 'application/json';
     }

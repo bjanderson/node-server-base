@@ -1,10 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import { readFileSync } from 'fs-extra';
 import Helmet from 'helmet';
-import { createServer, ServerOptions } from 'https';
 import morgan from 'morgan';
-import path from 'path';
 import { router } from './routes';
 import { setJsonHeaders, unknownEndpoint } from './routes/util-middleware';
 

@@ -4,7 +4,7 @@ import { Test } from './test.model';
 describe('Test', () => {
   describe('constructor defaults', () => {
     const defaults = {
-      id: DEFAULT_STRING,
+      pk: DEFAULT_STRING,
       value: DEFAULT_STRING,
     };
 
@@ -28,7 +28,7 @@ describe('Test', () => {
   describe('constructor assignments', () => {
     it('should set all values passed into the constructor', () => {
       const test = {
-        id: 'test id',
+        pk: 'test-pk',
         value: 'test value',
       };
 
